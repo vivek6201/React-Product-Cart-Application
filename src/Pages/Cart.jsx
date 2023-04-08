@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import CartProduct from '../Components/CartProduct';
-import { cartArray } from "../Redux/Slices/CartSlice";
 
 export const Cart = () => {
-  const cart = useSelector(cartArray);
+  const {cart} = useSelector(state => state);
   const [totalPrice,setTotalPrice] = useState(0);
 
   const calcTotalPrice = () =>{
@@ -35,7 +34,7 @@ export const Cart = () => {
             {
               cart.map((product) =>{
                 return (
-                  <CartProduct product = {product} key={product.id} />
+                  <CartProduct product = {product} key={product.id} setTotalPrice={setTotalPrice} totalPrice={totalPrice}/>
                 )
               })
             }

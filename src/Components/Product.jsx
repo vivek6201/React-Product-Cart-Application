@@ -1,10 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { add, cartArray, remove } from "../Redux/Slices/CartSlice";
+import { add, remove } from "../Redux/Slices/CartSlice";
 import { toast } from "react-hot-toast";
 
 const Product = ({ product }) => {
-  const cart  = useSelector(cartArray);
+  const { cart }  = useSelector(state => state);
   const dispatch = useDispatch();
 
   const addToCart = () => {
@@ -17,6 +17,8 @@ const Product = ({ product }) => {
     toast.error("Product Removed from cart");
   };
 
+  console.log(cart);
+
   return (
     <div className="flex flex-col items-center border rounded-lg p-3 gap-y-4 h-full justify-between group cursor-pointer hover:scale-110 hover:shadow-md transition-all duration-200">
       <h1 className="font-semibold text-center">
@@ -28,7 +30,7 @@ const Product = ({ product }) => {
       <img src={product.image} className="w-8/12 aspect-square" />
       <div className="w-full flex justify-between items-center">
         <p className="font-bold text-green-400">$ {Math.floor(product.price)}</p>
-        {cart.find((p) => p.id == product.id) ? (
+        {cart.some((p) => p.id == product.id) ? (
           <button
             className="border-2 rounded-full group-hover:bg-green-600 group-hover:text-white text-sm py-1 px-3 transition-all duration-200"
             onClick={removeFromCart}
