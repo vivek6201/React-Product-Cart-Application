@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { remove } from "../Redux/Slices/CartSlice";
 import { toast } from "react-hot-toast";
 
-const CartProduct = ({ product,setTotalPrice }) => {
+const CartProduct = ({ product }) => {
 
   const dispatch = useDispatch();
   const [itemCount,setItemCount] = useState(1);
