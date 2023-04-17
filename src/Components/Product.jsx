@@ -4,7 +4,7 @@ import { add, remove } from "../Redux/Slices/CartSlice";
 import { toast } from "react-hot-toast";
 
 const Product = ({ product }) => {
-  const { cart }  = useSelector(state => state);
+  const cart   = useSelector((state) => state.cart.cart);
   const dispatch = useDispatch();
 
   const addToCart = () => {
@@ -16,8 +16,6 @@ const Product = ({ product }) => {
     dispatch(remove(product.id));
     toast.error("Product Removed from cart");
   };
-
-  console.log(cart);
 
   return (
     <div className="flex flex-col items-center border rounded-lg p-3 gap-y-4 h-full justify-between group cursor-pointer hover:scale-110 hover:shadow-md transition-all duration-200">

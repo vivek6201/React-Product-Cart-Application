@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import CartProduct from '../Components/CartProduct';
 
 export const Cart = () => {
-  const {cart} = useSelector(state => state);
+  const cart = useSelector(state => state.cart.cart);
   const [totalPrice,setTotalPrice] = useState(0);
 
   const calcTotalPrice = () =>{
@@ -14,8 +14,6 @@ export const Cart = () => {
   useEffect(()=>{
     calcTotalPrice();
   },[cart])
-
-  console.log(cart.length);
 
   return (
     <div className="pt-10 pb-20 h-full w-full">
